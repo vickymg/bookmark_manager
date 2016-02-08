@@ -1,4 +1,4 @@
-require 'sinatra/base'
+require 'sinatra/Base'
 
 class Bookmark < Sinatra::Base
   get '/' do
