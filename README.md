@@ -1,8 +1,8 @@
 # bookmarks
 
-As a web user
+<!-- As a web user
 So that I can come back to my favourite pages
-I want to bookmark pages.
+I want to bookmark pages. -->
 
 As a web user
 So that I can come back to my favourite pages
