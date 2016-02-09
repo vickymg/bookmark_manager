@@ -1,5 +1,6 @@
 require 'link'
 
+
 describe Link do
 
   subject{described_class.create(title: 'Makers Academy', url: 'http://www.makersacademy.com/')}
