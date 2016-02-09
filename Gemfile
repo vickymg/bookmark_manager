@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby '2.2.3'
 
+gem 'sinatra'
 gem 'dm-transactions'
 gem 'database_cleaner'
 gem 'data_mapper'

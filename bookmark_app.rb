@@ -1,6 +1,6 @@
 ENV['RACK_ENV'] ||= 'development'
 
-require 'sinatra'
+require 'sinatra/base'
 require './lib/link'
 
 class BookmarkApp < Sinatra::Base
