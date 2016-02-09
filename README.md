@@ -1,22 +1,30 @@
-Bookmark Challenge 
-Week 4 
-Feb 2016
-
-USER STORIES
------------
-
+`````
 As a user
-So that I am able to refer to items that I’ve bookmarked
-I would like to see a list of links to my bookmarks
+So I can revisit interesting websites
+I want to save links
+`````
 
+`````
 As a user
-So that I can save a link to look at later
-I would like to add a new link to my bookmarks
+So I can revisit interesting websites
+I want to see my saved links
+`````
 
+`````
 As a user
-So that I can organise my bookmarks
-I would like to give my bookmarks a relevant tag
+So I can better understand my saved links
+I want to be able to add tags to links
+`````
 
+`````
 As a user
-So that I can quickly find a bookmark
-I would like to be able to filter by tag
+So I can quickly find the link I want
+I want to be able to filter links by tag
+`````
+
+`````
+As a user
+So I can use the bookmark manager
+I want my own private account
+`````
+
