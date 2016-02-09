@@ -5,19 +5,15 @@ class Bookmark < Sinatra::Base
 
   get '/link' do
     @link = Link.all
-
-    erb :'link/index'
+    erb :index
   end
 
-
-
-  get '/links/add-new' do
-
-    erb :'link/add-new'
+  get '/link/add-new' do
+    erb :add_new
   end
 
   post '/link' do
-    Link.create(url: params[:url], title: params[:title])
+    Link.create(url: params[:url], title: params[:bookmark_name])
     redirect to ('/link')
   end
 
