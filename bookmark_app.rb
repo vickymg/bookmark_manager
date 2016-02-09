@@ -1,8 +1,10 @@
 require 'sinatra/base'
+require './lib/link'
 
 class BookmarkApp < Sinatra::Base
   get '/' do
-    'http://www.makersacademy.com/'
+    @links = Link.all
+    erb :index
   end
 
   # start the server if ruby file executed directly
