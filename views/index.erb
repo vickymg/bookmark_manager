@@ -4,17 +4,6 @@
   </head>
 
   <body>
-    <% unless @links.nil?%>
-      <ul id="links">
-        <% @links.each do |link| %>
-          <li style="padding: 7px 0px; font-family: Arial;">
-            Title: <b><%= "#{link.title}"%></b><br>
-            URL: <a href="<%="#{link.url}"%>"><%="#{link.url}"%></a><br>
-            Tags: <em><%="#{link.tags}"%></em>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
 
     <form action='/new' method='post'>
       <input type='text' name='Title' placeholder="Title" required>
@@ -22,6 +11,19 @@
       <input type='text' name='Tags' placeholder="Tags (optional)">
       <input type='submit' value='Add new bookmark'>
     </form>
+
+    <% unless @links.nil?%>
+      <ul id="links">
+        <% @links.each do |link| %>
+          <li style="padding: 7px 0px; font-family: Arial;">
+            Title: <b><%= "#{link.title}"%></b><br>
+            URL: <a href="<%="#{link.url}"%>"><%="#{link.url}"%></a><br>
+            Tags: <em><%="#{link.tags.map{|t| t.name}.join(', ')}"%></em>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
   </body>
 
 </html>

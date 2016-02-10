@@ -1,12 +1,12 @@
-require_relative 'dm_setup'
+require 'data_mapper'
+require 'dm-postgres-adapter'
 
 class Tag
   include DataMapper::Resource
 
+  has n, :links, through: Resource
+
   property :id,    Serial
   property :name,  String
-  property :urls,  String
 
 end
-
-dm_setup
