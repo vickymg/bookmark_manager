@@ -7,10 +7,16 @@ feature 'Filtering through tags' do
     fill_in 'url', with: 'www.bubblesaregreat.com'
     fill_in 'tag', with: 'bubbles'
     click_button 'create link'
-    visit '/link/tag'
-      fill_in 'search', with: 'bubbles'
-      click_button 'search'
+
+    visit '/link/add-new'
+    fill_in 'bookmark_name', with: 'No Bubble Stuff'
+    fill_in 'url', with: 'www.nobubbles.com'
+    fill_in 'tag', with: 'no'
+    click_button 'create link'
+
+    visit '/link/tag/bubbles'
     expect(page).to have_content('Bubble Stuff')
+    expect(page).not_to have_content('No Bubble Stuff')
   end
 
 end
