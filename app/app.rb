@@ -24,16 +24,19 @@ class Bookmark < Sinatra::Base
     redirect to ('/link')
   end
 
-  # post '/tagging' do
-
-  # end
-=begin
-  get '/link/add-tag' do
-    erb :add_tag
+  get '/link/tag' do
+    erb :search_tag
   end
-=end
+
+  post '/searching' do
+#all links with the tag = param
+    redirect ("/link/tag/#{params[:tag]}")
+
+;lm
 
 
+
+`c`
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
