@@ -1,10 +1,12 @@
-require_relative 'data_mapper_setup.rb'
+require_relative '../data_mapper_setup.rb'
 
 class Link
   include DataMapper::Resource
 
+  has n, :tag, through: Resource
+
   property :id,   Serial
-  property :title, String
+  property :bookmark_name, String
   property :url, String
 
 end

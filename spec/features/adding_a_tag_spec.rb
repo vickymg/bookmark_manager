@@ -2,11 +2,12 @@ require 'spec_helper'
 
 feature 'tagging a link' do
   scenario 'The user adds a tag to a bookmark.' do
-    Link.create(url: 'http://www.bookmark.com', title: 'Favorite link')
-    visit '/link/add-tag'
-    fill_in 'title', with: 'Favourite title'
+    visit '/link/add-new'
+    fill_in 'bookmark_name', with: 'Favourite title'
+    fill_in 'url', with: 'www.weeee!.co.uk'
     fill_in 'tag', with: 'Orcs!'
-    click_button 'Submit'
-    expect(page).to have_content('Tags: Orcs!')    
+    click_button 'create link'
+    link = Link.first
+    expect(link.tag.map(&:tag)).to include('Orcs!')
   end
 end
