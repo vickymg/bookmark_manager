@@ -9,6 +9,7 @@ class Bookmark < Sinatra::Base
 
   get '/link' do
     @link = Link.all
+    @tags = Tag.all
     erb :index
   end
 
@@ -18,8 +19,9 @@ class Bookmark < Sinatra::Base
 
   post '/link' do
     link = Link.create(url: params[:url], bookmark_name: params[:bookmark_name])
-    tag = Tag.create(bookmark_name: params[:bookmark_name], tag: params[:tag])
-    link.tag << tag
+    params[:tag].split.each do |tag|
+      link.tag << Tag.create(tag: tag)
+    end
     link.save
     redirect to ('/link')
   end

@@ -6,7 +6,7 @@ require 'spec_helper'
 
 feature 'View Link' do
 
-  scenario 'go to homepage and see a list of link' do
+  scenario 'go to homepage and see a list of links' do
     Link.create(url: 'http://www.bookmark.com', bookmark_name: 'Favorite link')
 
     visit '/link'

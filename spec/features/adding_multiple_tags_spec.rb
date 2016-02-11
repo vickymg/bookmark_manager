@@ -5,10 +5,9 @@ feature 'tagging a link' do
     visit '/link/add-new'
     fill_in 'bookmark_name', with: 'Favourite title'
     fill_in 'url', with: 'www.weeee!.co.uk'
-    fill_in 'tag', with: 'Orcs!; 
+    fill_in 'tag', with: 'Orcs! Monster battle'
     click_button 'create link'
     link = Link.first
-    within 'ul#link' do
-      expect(page).to have_content('bookmark name')
-  end
+    expect(link.tag.map(&:tag)).to include('Orcs!', 'Monster', 'battle')
+    end
 end
