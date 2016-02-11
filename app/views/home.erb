@@ -1,0 +1,20 @@
+<h1> Create an account </h1>
+
+<form action='/users' method='POST'>
+  <label for='email'>
+    Email:
+    <input type='text' name='email'>
+  </label>
+  <label for='password'>
+    Password:
+    <input type='text' name='password'>
+  </label>
+  <label for='password_confirmation'>
+    Confirm password:
+    <input type='text' name='password_confirmation'>
+  </label>
+  <%if sign_up_fail? %>
+  <p> Your passwords do not match, please re-enter. </p>
+  <%end%>
+  <input type='submit' value='Create account'>
+</form>
