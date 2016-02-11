@@ -9,7 +9,6 @@ class Bookmark < Sinatra::Base
 
   get '/link' do
     @link = Link.all
-    @tags = Tag.all
     erb :index
   end
 
