@@ -11,6 +11,7 @@ require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
 require 'web_helper'
+require 'sinatra/flash'
 
 
 Capybara.app = Bookmark

@@ -1,11 +1,14 @@
 ENV["RACK_ENV"] ||= "development"
 
 require 'sinatra/base'
+require 'sinatra/flash'
 require_relative 'data_mapper_setup'
 require_relative 'models/link'
 
 
 class Bookmark < Sinatra::Base
+
+  register Sinatra::Flash
 
   use Rack::Session::Pool, :expire_after => 36000000
 
@@ -41,10 +44,14 @@ class Bookmark < Sinatra::Base
   post '/users' do
     session[:password] = params[:password]
     session[:password_confirmation] = params[:password_confirmation]
-    redirect to('/sign-up') if sign_up_fail?
-    user = User.create(email: params[:email], password: params[:password])
-    session[:user_id] = user.id
-    redirect to('/link')
+    if sign_up_fail?
+      flash.now[:notice] = "Your passwords do not match, please re-enter."
+      erb :home
+    else
+      user = User.create(email: params[:email], password: params[:password])
+      session[:user_id] = user.id
+      redirect to('/link')
+    end
   end
 
   helpers do
