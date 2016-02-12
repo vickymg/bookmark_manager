@@ -38,30 +38,24 @@ class Bookmark < Sinatra::Base
   end
 
   get '/sign-up' do
+    @user = User.new
     erb :home
   end
 
   post '/users' do
-    session[:password] = params[:password]
-    session[:password_confirmation] = params[:password_confirmation]
-    if sign_up_fail?
-      flash.now[:notice] = "Your passwords do not match, please re-enter."
-      erb :home
-    else
-      user = User.create(email: params[:email], password: params[:password])
-      session[:user_id] = user.id
+    @user = User.new(email: params[:email], password: params[:password], :password_confirmation => params[:password_confirmation])
+    if @user.save
+      session[:user_id] = @user.id
       redirect to('/link')
+    else
+      flash.now[:error] = @user.errors.full_messages.join(",")
+      erb :home
     end
   end
 
   helpers do
     def current_user
       @current_user ||=User.get(session[:user_id])
-    end
-
-    def sign_up_fail?
-      !session[:password_confirmation] ||
-      session[:password] != session[:password_confirmation]
     end
   end
 
