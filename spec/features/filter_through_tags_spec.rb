@@ -2,13 +2,13 @@ require 'spec_helper'
 
 feature 'Filtering through tags' do
   scenario 'Filtering through the bubbles tag' do
-    visit '/link/add-new'
+    visit '/links/new'
     fill_in 'bookmark_name', with: 'Bubble Stuff'
     fill_in 'url', with: 'www.bubblesaregreat.com'
     fill_in 'tag', with: 'bubbles'
     click_button 'create link'
 
-    visit '/link/add-new'
+    visit '/links/new'
     fill_in 'bookmark_name', with: 'No Bubble Stuff'
     fill_in 'url', with: 'www.nobubbles.com'
     fill_in 'tag', with: 'no'

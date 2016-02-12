@@ -10,15 +10,30 @@ class Bookmark < Sinatra::Base
 
   register Sinatra::Flash
 
-  use Rack::Session::Pool, :expire_after => 36000000
+
+    # def is_user?
+    #   current_user != nil
+    # end
+  #
+  # register do
+  #   def auth (type)
+  #     condition do
+  #       redirect "/users/sign_in" unless send("is_#{type}?")
+  #     end
+  #   end
+  # end
+
+  # get '/' do
+  #   redirect to('/users/sign_in')
+  # end
 
   get '/link' do
     @link = Link.all
     erb :index
   end
 
-  get '/link/add-new' do
-    erb :add_new
+  get '/links/new' do
+    erb :'links/new'
   end
 
   post '/link' do
@@ -30,7 +45,6 @@ class Bookmark < Sinatra::Base
     redirect to ('/link')
   end
 
-
   get '/link/tag/:tag' do
     tag = Tag.first(tag: params[:tag])
     @link = tag ? tag.link : []
@@ -39,7 +53,7 @@ class Bookmark < Sinatra::Base
 
   get '/sign-up' do
     @user = User.new
-    erb :home
+    erb :'users/new'
   end
 
   post '/users' do
@@ -48,10 +62,25 @@ class Bookmark < Sinatra::Base
       session[:user_id] = @user.id
       redirect to('/link')
     else
-      flash.now[:error] = @user.errors.full_messages.join(",")
-      erb :home
+      flash.now[:error] = @user.errors.full_messages.join(", ")
+      erb :'users/new'
     end
   end
+
+  # get '/users/sign_in' do
+  #   erb :'users/sign_in'
+  # end
+  #
+  # post '/users/sign_in' do
+  #   @user = User.find_by_email(params[:email])
+  #   if @user.password = params[:password]
+  #     session[:user_id] = @user.id
+  #     redirect to('/link')
+  #   else
+  #     flash.now[:error] = @user.errors.full_messages.join(", ")
+  #     erb :'users/sign_in'
+  #   end
+  # end
 
   helpers do
     def current_user
